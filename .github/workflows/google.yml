@@ -18,9 +18,11 @@ on:
 
 env:
   PROJECT_ID: cf-rungis-exp-development-4l
+  GAR_LOCATION: europe-west3
   GKE_CLUSTER: kubernetes-cluster-1    # TODO: update to cluster name
   GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: odoo-1 # TODO: update to deployment name
+  REPOSITORY: odoo
   IMAGE: odoo
 
 jobs:
@@ -41,7 +43,7 @@ jobs:
 
     - name: Docker configuration
       run: |-
-        echo ${{steps.auth.outputs.access_token}} | docker login -u oauth2accesstoken --password-stdin https://eu.gcr.io-docker.pkg.dev
+        echo ${{steps.auth.outputs.access_token}} | docker login -u oauth2accesstoken --password-stdin https://$GAR_LOCATION-docker.pkg.dev
     # Get the GKE credentials so we can deploy to the cluster
     - name: Set up GKE credentials
       uses: google-github-actions/get-gke-credentials@v0
