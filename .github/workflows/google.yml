@@ -52,7 +52,7 @@ jobs:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
 
-    # Push the Docker image to Google Artifact Registry
+
     - name: Pull
       run: |-
         docker pull "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
