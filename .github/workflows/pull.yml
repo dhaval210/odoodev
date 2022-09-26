@@ -64,7 +64,7 @@ jobs:
     # Push the Docker image to Google Artifact Registry
     - name: Publish
       run: |-
-        docker pull "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
+        docker pull "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest"
 
     # Deploy the Docker image to the GKE cluster#
     #- name: Deploy
