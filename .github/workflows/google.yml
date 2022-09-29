@@ -27,7 +27,7 @@ env:
 
 jobs:
   setup-build-publish-deploy:
-    name: Setup, Build, Publish, and Deploy
+    name: Setup, Pull, Build, Publish, and Deploy
     runs-on: ubuntu-latest
     environment: production
 
@@ -51,7 +51,12 @@ jobs:
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
-              
+        
+    # Pull the Docker image to Google Artifact Registry
+    - name: Pull
+      run: |-
+        docker pull "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest"
+        
     # Build the Docker image
     - name: Build
       run: |-
