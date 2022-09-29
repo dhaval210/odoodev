@@ -56,7 +56,11 @@ jobs:
     - name: Pull
       run: |-
         docker pull "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest" || true
-        docker build --cache-from $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:latest 
+        docker build \
+          --cache-from
+          --tag "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
+          --build-arg GITHUB_SHA="$GITHUB_SHA" \
+          --build-arg GITHUB_REF="$GITHUB_REF" \
         
     # Build the Docker image
     - name: Build
