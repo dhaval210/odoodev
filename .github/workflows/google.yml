@@ -56,7 +56,7 @@ jobs:
     - name: Pull
       run: |-
         docker pull "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest" || true
-        docker build --cache-from eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest -t eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:stable 
+        docker build --cache-from $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:latest 
         
     # Build the Docker image
     - name: Build
