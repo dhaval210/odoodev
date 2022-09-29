@@ -55,15 +55,8 @@ jobs:
     # Pull the Docker image to Google Artifact Registry
     - name: Pull
       run: |-
-        docker pull "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest"
-        ->
-          docker build
-          --pull
-          --build-arg http_proxy=$http_proxy
-          --build-arg https_proxy=$https_proxy
-          --build-arg no_proxy=$no_proxy
-          --cache-from $CI_REGISTRY_IMAGE:latest
-          --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+        docker pull "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest" || true
+        docker build --cache-from eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest -t eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:stable 
         
     # Build the Docker image
     - name: Build
