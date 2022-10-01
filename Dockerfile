@@ -1,8 +1,7 @@
-FROM eu.gcr.io/cf-rungis-exp-development-4l/odoopub:latest
+FROM eu.gcr.io/cf-rungis-exp-development-4l/odoofinal:latest
 MAINTAINER LNKAsia Techsol LLP. <support@lnkasia.com>
 
 # Copy Odoo configuration file
-COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
 
 # Setting up code directory
