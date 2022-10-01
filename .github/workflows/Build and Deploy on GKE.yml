@@ -57,7 +57,7 @@ jobs:
       run: |-
         docker build \
           --tag "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest" \
-          --build-arg GITHUB_SHA="$GITHUB_SHA" \
+          --build-arg GITHUB_SHA="latest" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           .
           
@@ -67,11 +67,7 @@ jobs:
         docker push "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest"
 
     # Deploy the Docker image to the GKE cluster#
-    #- name: Deploy
-     # run: |-
-      # replacing the image name in the k8s template
-    #    ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
-    #    ./kustomize build . | kubectl apply -f -
-    #    kubectl rollout status deployment/$DEPLOYMENT_NAME
-   #   kubectl get services -o wide
-   #
+    - name: Deploy
+      run: |-
+        sed -i -e 's/GITHUB_SHA/'"latest"'/' ${{ github.workspace }}/.github/workflows/menifests/
+        kubctl apply -f ${{ github.workspace }}/.github/workflows/menifests/deployment.yaml
