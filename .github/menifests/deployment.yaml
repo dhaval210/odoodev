@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: odoofinal-sha256-1
-        image: eu.gcr.io/cf-rungis-exp-development-4l/odoofinal/odoodev:latest
+        image: eu.gcr.io/cf-rungis-exp-development-4l/odoodev/odoodev:latest
         volumeMounts:
         - mountPath: /mnt/filestore
           name: mypvc
