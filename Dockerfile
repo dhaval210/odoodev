@@ -5,6 +5,10 @@ MAINTAINER LNKAsia Techsol LLP. <support@lnkasia.com>
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
 
+# Setting up code directory
+WORKDIR /mnt/filestore/addons
+COPY . /mnt/filestore/addons/.
+
 # Expose Odoo services
 EXPOSE 8069 8071 8072
 
