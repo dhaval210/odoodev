@@ -5,14 +5,6 @@ MAINTAINER LNKAsia Techsol LLP. <support@lnkasia.com>
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
 
-# Set permissions and Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
-RUN chown odoo /etc/odoo/odoo.conf \
-    && mkdir -p /mnt/extra-addons \
-    && mkdir -p /mnt/temp \
-    && chown -R odoo /mnt/extra-addons
-VOLUME ["/var/lib/odoo", "/mnt/extra-addons"] \
-VOLUME ["/mnt/temp", "/tmp"]
-
 # Expose Odoo services
 EXPOSE 8069 8071 8072
 
