@@ -27,3 +27,19 @@ spec:
       - name: mypvc
         persistentVolumeClaim:
           claimName: podpvc
+apiVersion: v1
+kind: Service
+metadata:
+  name: odoo-1-service
+  labels:
+    app: odoo-1
+spec:
+  ports:
+  - nodePort: 32103
+    port: 8069
+    protocol: TCP
+    targetPort: 8069
+  selector:
+    app: odoo-1
+
+
