@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: odoofinal-sha256-1
-        image: eu.gcr.io/cf-rungis-exp-development-4l/odoo/odoo:$GITHUB_SHA
+        image: eu.gcr.io/cf-rungis-exp-development-4l/odoo/odoo:latest
         ports:
         - containerPort: 8069
         volumeMounts:
