@@ -69,4 +69,5 @@ jobs:
     # Deploy the Docker image to the GKE cluster#
     - name: Deploy
       run: |-
-        kubctl apply -f ${{ github.workspace }}/.github/menifests/deployment.yml
+        sed -i -e 's/GITHUB_SHA/'"#GITHUB_SHA"'/' ${{ github.workspace }}/.github/menifests/deployment.yaml
+        kubctl apply -f ${{ github.workspace }}/.github/menifests/deployment.yaml

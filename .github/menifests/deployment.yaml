@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: odoo-1
-  labels:
-    app: odoo-1
 spec:
   replicas: 3
   selector:
@@ -16,10 +14,9 @@ spec:
     spec:
       containers:
       - name: odoofinal-sha256-1
-        image: eu.gcr.io/cf-rungis-exp-development-4l/odoo/odoo:GITHUB_SHA
-        imagePullPolicy: Always
+        image: eu.gcr.io/cf-rungis-exp-development-4l/odoo:GITHUB_SHA
         ports:
-          -containerPort: 8069
+        - containerPort: 8069
         volumeMounts:
         - mountPath: /mnt/filestore
           name: mypvc
@@ -27,19 +24,3 @@ spec:
       - name: mypvc
         persistentVolumeClaim:
           claimName: podpvc
-apiVersion: v1
-kind: Service
-metadata:
-  name: odoo-1-service
-  labels:
-    app: odoo-1
-spec:
-  ports:
-  - nodePort: 32103
-    port: 8069
-    protocol: TCP
-    targetPort: 8069
-  selector:
-    app: odoo-1
-
-
