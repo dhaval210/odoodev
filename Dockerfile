@@ -6,7 +6,7 @@ COPY ./odoo.conf /etc/odoo/
 
 # Setting up code directory
 WORKDIR /mnt/filestore/addons
-COPY /development/. /mnt/filestore/addons/.
+COPY /development/. /mnt/transfer/.
 
 # Expose Odoo services
 EXPOSE 8069 8071 8072
