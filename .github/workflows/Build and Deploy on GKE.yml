@@ -70,4 +70,4 @@ jobs:
     - name: Deploy
       run: |-
         sed -i -e 's/GITHUB_SHA/'"#GITHUB_SHA"'/' ${{ github.workspace }}
-        kubctl apply -f ${{ github.workspace }}/.deployment.yaml
+        kubctl apply -f ${{ github.workspace }}/deployment.yaml
