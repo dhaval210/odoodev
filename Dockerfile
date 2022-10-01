@@ -1,8 +1,7 @@
-FROM eu.gcr.io/cf-rungis-exp-development-4l/odoofinal:latest
+FROM eu.gcr.io/cf-rungis-exp-development-4l/odoopub:latest
 MAINTAINER LNKAsia Techsol LLP. <support@lnkasia.com>
 
-# Copy entrypoint script and Odoo configuration file
-COPY ./entrypoint.sh /
+# Copy Odoo configuration file
 COPY ./odoo.conf /etc/odoo/
 
 # Setting up code directory
@@ -17,5 +16,6 @@ ENV ODOO_RC /etc/odoo/odoo.conf
 
 COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
+RUN chmod +x entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
