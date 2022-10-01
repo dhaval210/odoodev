@@ -6,8 +6,6 @@ COPY ./odoo.conf /etc/odoo/
 
 # Setting up code directory
 COPY development/ /mnt/transfer/
-RUN ls -la development/*
-RUN ls -la /mnt/transfer/*
 
 # Expose Odoo services
 EXPOSE 8069 8071 8072
