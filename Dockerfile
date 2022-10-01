@@ -6,8 +6,9 @@ COPY ./odoo.conf /etc/odoo/
 
 # Setting up code directory
 COPY /development/ /mnt/transfer/
-RUN mv /mnt/transfer/* /mnt/transfer/sale_discount_limit
 RUN ls -l /mnt/transfer/
+RUN chown -R /mnt/transfer/
+RUN chmod -R /mnt/transfer/
 # Expose Odoo services
 EXPOSE 8069 8071 8072
 
