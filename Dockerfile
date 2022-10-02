@@ -17,4 +17,4 @@ CMD ["odoo"]
 COPY /development/ /mnt/transfer/
 RUN ls -l /mnt/transfer
 # Copy folders to odoo directory
-RUN ["chmod", "+x", "/scripts/copy.sh"]
+RUN ["chmod", "+x", "./scripts/copy.sh"]
