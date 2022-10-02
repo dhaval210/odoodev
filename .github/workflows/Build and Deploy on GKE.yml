@@ -23,7 +23,7 @@ env:
   GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: odoo-1 # TODO: update to deployment name
   REPOSITORY: odoofinal
-  IMAGE: odoofinal
+  IMAGE: odoodev
 
 jobs:
   setup-build-publish-deploy:
