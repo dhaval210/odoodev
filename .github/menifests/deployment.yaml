@@ -14,15 +14,10 @@ spec:
     spec:
       containers:
       - name: odoofinal-sha256-1
-        image: eu.gcr.io/cf-rungis-exp-development-4l/odoofinal/odoodev:latest
+        image: eu.gcr.io/cf-rungis-exp-development-4l/odoofinal/odoofinal:latest
         volumeMounts:
         - mountPath: /mnt/filestore
           name: mypvc
-        command:
-        - chown
-        - "-R"
-        - "101:101"
-        - "/mnt/transfer"
       volumes:
       - name: mypvc
         persistentVolumeClaim:

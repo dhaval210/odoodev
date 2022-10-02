@@ -1,4 +1,4 @@
-FROM eu.gcr.io/cf-rungis-exp-development-4l/odoofinal/odoodev:latest
+FROM eu.gcr.io/cf-rungis-exp-development-4l/odoofinal:latest
 MAINTAINER LNKAsia Techsol LLP. <support@lnkasia.com>
 
 # Copy Odoo configuration file
