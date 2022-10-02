@@ -22,13 +22,3 @@ spec:
       - name: mypvc
         persistentVolumeClaim:
           claimName: podpvc
-        command: 
-          - cp
-          - "-R"
-          - "/mnt/transfer/."
-          - "/mnt/filestore/rungisapps/."
-        command: 
-          - cp
-          - "-R"
-          - "/mnt/transfer/."
-          - "/mnt/filestore/addons/."        
