@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: odoofinal-sha256-1
-        image: eu.gcr.io/cf-rungis-exp-development-4l/odoofinal/odoofinal:latest
+        image: eu.gcr.io/cf-rungis-exp-development-4l/odoofinal:GITHUB_SHA
+        imagePullPolicy: Always
         volumeMounts:
         - mountPath: /mnt/filestore
           name: mypvc
