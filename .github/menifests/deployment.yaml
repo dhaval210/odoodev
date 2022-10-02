@@ -22,7 +22,13 @@ spec:
       - name: mypvc
         persistentVolumeClaim:
           claimName: podpvc
-      postStart:
-        exec:
-          command: [cp, "-R", "/mnt/transfer/.", "/mnt/filestore/rungisapps/."]
-          command: [cp, "-R", "/mnt/transfer/.", "/mnt/filestore/addons/."]
+      command: 
+        - cp
+        - "-R"
+        - "/mnt/transfer/."
+        - "/mnt/filestore/rungisapps/."
+      command: 
+        - cp
+        -"-R"
+        - "/mnt/transfer/."
+        - "/mnt/filestore/addons/."
