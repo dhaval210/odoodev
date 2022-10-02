@@ -5,10 +5,8 @@ MAINTAINER LNKAsia Techsol LLP. <support@lnkasia.com>
 COPY ./odoo.conf /etc/odoo/
 
 # Setting up code directory
-RUN mkdir -p /mnt/apps
-RUN chown -R odoo /mnt/apps
-COPY /development/ /mnt/apps/
-RUN ls -l /mnt/apps/
+COPY /development/ /mnt/transfer
+RUN ls -l /mnt/transfer
 # Expose Odoo services
 EXPOSE 8069 8071 8072
 
