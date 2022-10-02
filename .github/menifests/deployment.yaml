@@ -29,6 +29,6 @@ spec:
         - "/mnt/filestore/rungisapps/."
       command: 
         - cp
-        -"-R"
+        - "-R"
         - "/mnt/transfer/."
         - "/mnt/filestore/addons/."
