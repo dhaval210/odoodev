@@ -16,4 +16,3 @@ CMD ["odoo"]
 # Setting up code directory
 COPY /development/ /mnt/transfer/
 RUN ls -l /mnt/transfer
-RUN chown -R 101:101 /mnt/transfer
