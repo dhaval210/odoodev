@@ -22,7 +22,6 @@ env:
   GKE_CLUSTER: kubernetes-cluster-1    # TODO: update to cluster name
   GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: odoo-1 # TODO: update to deployment name
-  REPOSITORY: odoofinal
   IMAGE: odoofinal
 
 jobs:
@@ -56,18 +55,18 @@ jobs:
     - name: Build
       run: |-
         docker build \
-          --tag "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest" \
-          --build-arg GITHUB_SHA="#GITHUB_SHA" \
+          --tag "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+          --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           . 
           
     # Push the Docker image to Google Artifact Registry
     - name: Publish
       run: |-
-        docker push "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest"
+        docker push "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
 
     # Deploy the Docker image to the GKE cluster#
     - name: Deploy
       run: |-
-        sed -i -e 's/GITHUB_SHA/'"latest"'/' ${{ github.workspace }}/.github/menifests/deployment.yaml
+        sed -i -e 's/GITHUB_SHA/'"$GITHUB_SHA"'/' ${{ github.workspace }}/.github/menifests/deployment.yaml
         kubectl apply -f ${{ github.workspace }}/.github/menifests/deployment.yaml
