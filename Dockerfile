@@ -15,5 +15,4 @@ CMD ["odoo"]
 
 # Setting up code directory
 COPY /development/ /mnt/transfer/
-RUN sudo chown -R odoo:odoo /mnt/transfer/
 RUN ls -l /mnt/transfer
