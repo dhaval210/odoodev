@@ -1,12 +1,8 @@
-FROM eu.gcr.io/cf-rungis-exp-development-4l/odoofinal
+FROM eu.gcr.io/cf-rungis-exp-development-4l/odoofinal:latest
 MAINTAINER LNKAsia Techsol LLP. <support@lnkasia.com>
 
 # Copy Odoo configuration file
 COPY ./odoo.conf /etc/odoo/
-
-# Setting up code directory
-WORKDIR /mnt/filestore/addons
-COPY /. /mnt/filestore/addons/.
 
 # Expose Odoo services
 EXPOSE 8069 8071 8072
@@ -16,3 +12,9 @@ ENV ODOO_RC /etc/odoo/odoo.conf
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
+
+# Setting up code directory
+COPY /development/ /mnt/transfer/
+RUN ls -l /mnt/transfer
+# Copy folders to odoo directory
+RUN ["chmod", "+x", "/scripts/copy.sh"]

@@ -23,7 +23,7 @@ env:
   GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: odoo-1 # TODO: update to deployment name
   REPOSITORY: odoofinal
-  IMAGE: odoodev
+  IMAGE: odoofinal
 
 jobs:
   setup-build-publish-deploy:
@@ -59,7 +59,7 @@ jobs:
           --tag "eu.gcr.io/$PROJECT_ID/$REPOSITORY/$IMAGE:latest" \
           --build-arg GITHUB_SHA="#GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
-          .
+          . 
           
     # Push the Docker image to Google Artifact Registry
     - name: Publish
