@@ -15,10 +15,6 @@ name: Build and Deploy on GKE
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
-  
 
 jobs:
   setup-build-publish-deploy:
