@@ -74,11 +74,11 @@ jobs:
        # kubectl apply -f ${{ github.workspace }}/.github/menifests/deployment.yaml
 
 deploy_to_dev:
-  if: github.event_name != 'pull_request'
-  environment: development
-  DEPLOYMENT_NAME: odoo-2
+   if: github.event_name != 'pull_request'
+   environment: development
+   DEPLOYMENT_NAME: odoo-2
 
 deploy_to_beta:
-  if: github.event_name != 'pull_request'
-  environment: production
-  DEPLOYMENT_NAME: odoo-3
+   if: github.event_name != 'pull_request'
+   environment: production
+   DEPLOYMENT_NAME: odoo-3
