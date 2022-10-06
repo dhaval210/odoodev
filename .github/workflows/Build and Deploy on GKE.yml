@@ -15,20 +15,19 @@ name: Build and Deploy on GKE
 on:
   push:
     branches: [ "main" ]
-
-env:
-  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  GAR_LOCATION: europe-west3
-  GKE_CLUSTER: kubernetes-cluster-1    # TODO: update to cluster name
-  GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
-  DEPLOYMENT_NAME: odoo-1 # TODO: update to deployment name
-  IMAGE: odoofinal
+  
 
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
-    environment: production
+    env:
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      GAR_LOCATION: europe-west3
+      GKE_CLUSTER: kubernetes-cluster-1    # TODO: update to cluster name
+      GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
+      DEPLOYMENT_NAME: odoo-1 # TODO: update to deployment name
+      IMAGE: odoofinal
 
     steps:
     - name: Checkout
@@ -61,12 +60,12 @@ jobs:
           . 
           
     # Push the Docker image to Google Artifact Registry
-    - name: Publish
-      run: |-
-        docker push "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+    #- name: Publish
+     # run: |-
+      #  docker push "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
 
     # Deploy the Docker image to the GKE cluster#
-    - name: Deploy
-      run: |-
-        sed -i -e 's/GITHUB_SHA/'"$GITHUB_SHA"'/' ${{ github.workspace }}/.github/menifests/deployment.yaml
-        kubectl apply -f ${{ github.workspace }}/.github/menifests/deployment.yaml
+    #- name: Deploy
+     # run: |-
+      #  sed -i -e 's/GITHUB_SHA/'"$GITHUB_SHA"'/' ${{ github.workspace }}/.github/menifests/deployment.yaml
+       # kubectl apply -f ${{ github.workspace }}/.github/menifests/deployment.yaml
