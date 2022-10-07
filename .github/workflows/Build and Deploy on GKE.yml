@@ -21,8 +21,7 @@ jobs:
 
     runs-on: ubuntu-latest
     environment: development
-    env:
-      env: ${{secrets.env}}
+
     steps:
     - uses: actions/checkout@v3
 
