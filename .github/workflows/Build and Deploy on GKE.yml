@@ -23,6 +23,7 @@ jobs:
     environment: development
     env:
       DEV_ENV: ${{secrets.DEV_ENV}}
+      GKE_CLUSTER: kubernetes-cluster-1
     steps:
     - uses: actions/checkout@v3
 
