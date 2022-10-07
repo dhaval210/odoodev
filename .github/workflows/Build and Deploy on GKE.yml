@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     env:
-      DEV_ENV: ${{secrets.DEV_ENV}}
+      env: ${{secrets.env}}
       GKE_CLUSTER: kubernetes-cluster-1
     steps:
     - uses: actions/checkout@v3
