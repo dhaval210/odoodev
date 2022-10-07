@@ -25,7 +25,7 @@ env:
   IMAGE: odoofinal
 
 jobs:
-  setup-build-publish-deploy:
+  Build:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
     environment: production
@@ -36,6 +36,7 @@ jobs:
     DEPLOYMENT_NAME: odoo-2 # TODO: update to deployment name
     IMAGE: odoo
 
+    steps:
     - name: Checkout
       uses: actions/checkout@v3
 
@@ -56,9 +57,12 @@ jobs:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
 
+
   deploy_to_dev:
-    if: github.event_name != 'pull_request'
-    environment: development
+     if: github.event_name != 'pull_request'
+     environment: development
+     steps:
+     
   deploy_to_production:
     if: github.event_name != 'pull_request'
     environment: production
