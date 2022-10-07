@@ -24,7 +24,7 @@ jobs:
     env:
       DEV_ENV: ${{secrets.DEV_ENV}}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     # Alternative option - authentication via credentials json
     - id: 'auth'
@@ -49,7 +49,7 @@ jobs:
     if: github.event_name != 'pull_request'
     environment: Pre-Production
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
   Deploy_to_Production:
     runs-on: ubuntu-latest
@@ -57,4 +57,4 @@ jobs:
     if: github.event_name != 'pull_request'
     environment: production
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
