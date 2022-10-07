@@ -40,8 +40,8 @@ jobs:
     - name: Set up GKE credentials
       uses: google-github-actions/get-gke-credentials@v0
       with:
-        cluster_name: ${{ env.GKE_CLUSTER }}
-        location: ${{ env.GKE_ZONE }}
+        cluster_name: ${{ ENV.GKE_CLUSTER }}
+        location: ${{ ENV.GKE_ZONE }}
 
   deploy_to_dev:
     runs-on: ubuntu-latest
