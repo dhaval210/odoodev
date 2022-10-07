@@ -23,14 +23,6 @@ jobs:
   Build:
     
     runs-on: ubuntu-latest
-    env:
-     PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-     GAR_LOCATION: europe-west3
-     GKE_CLUSTER: kubernetes-cluster-1    # TODO: update to cluster name
-     GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
-     DEPLOYMENT_NAME: odoo-2 # TODO: update to deployment name
-     IMAGE: odoo
-
     steps:
     - uses: actions/checkout@v2
 
