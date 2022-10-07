@@ -26,7 +26,7 @@ env:
 
 jobs:
   Build:
-    name: Setup, Build, Publish, and Deploy
+    
     runs-on: ubuntu-latest
     environment: production
     PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
@@ -37,8 +37,7 @@ jobs:
     IMAGE: odoo
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v2
 
     # Alternative option - authentication via credentials json
     - id: 'auth'
@@ -56,8 +55,6 @@ jobs:
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
-
-
   deploy_to_dev:
      if: github.event_name != 'pull_request'
      environment: development
