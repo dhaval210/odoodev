@@ -2,13 +2,13 @@ name: Build and Deploy in GKE for production
 
 on:
   push:
-    branches: [dev, preprod, production]
+    branches: [dev]
 
 jobs:
   Deploy_to_Dev:
 
     runs-on: ubuntu-latest
-    environment: development
+    environment: production
     env:
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
       GAR_LOCATION: europe-west3
