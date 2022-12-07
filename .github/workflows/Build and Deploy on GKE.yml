@@ -2,7 +2,10 @@ name: Build and Deploy in GKE for production
 
 on:
   push:
-    branches: production
+    branches:
+      - production
+      - dev
+      - preprod
 
 jobs:
   Deploy_to_Dev:
