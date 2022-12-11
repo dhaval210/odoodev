@@ -21,14 +21,14 @@
 ##############################################################################
 {
     'name': 'Asset Management',
-    'version': '3.0',
-    'category': 'LnkAsia',
+    'version': '1.0',
+    'category': 'Dhaval',
     'summary': 'Asset Management',
     'license':'AGPL-3',
     'description': """
      Asset management is a simple system to manage assets owned by an organization.
 """,
-    'author' : 'Dhaval',
+    'author' : 'LNKasia',
     'website' : 'http://www.broadtech-innovations.com',
     'depends': ['base','mail'],
     'images': ['static/description/banner.jpg'],
