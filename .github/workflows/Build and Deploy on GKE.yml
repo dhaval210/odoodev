@@ -6,8 +6,7 @@ on:
   workflow_call:
 
 jobs:
- 
-  Deploy_to_Dev:
+ Deploy_to_Dev:
     runs-on: ubuntu-latest
     environment: development
     env:
@@ -17,5 +16,22 @@ jobs:
       GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
       DEPLOYMENT_NAME: odoo-1 # TODO: update to deployment name
       IMAGE: odoofinal
-  call-workflow:
+      
+
+    name: Build and Push
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v2
+   
+      - name: Push
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: preprod # The branch name where you want to push the assets
+          FOLDER: development # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          TARGET_DIR: development
+ call-workflow:
     uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@preprod
+
+
