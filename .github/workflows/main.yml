@@ -1,6 +1,6 @@
 on:
   push:
-    branches: dev, preprod, production
+    branches: dev
 
 jobs:
   build:
