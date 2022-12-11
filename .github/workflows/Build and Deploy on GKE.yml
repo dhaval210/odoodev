@@ -1,4 +1,0 @@
-on:
-  merge:
-    branches: [dev, preprod, production]
-
