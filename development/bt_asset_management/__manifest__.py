@@ -21,14 +21,14 @@
 ##############################################################################
 {
     'name': 'Asset Management',
-    'version': '2.0',
+    'version': '1.0',
     'category': 'custom',
     'summary': 'Asset Management',
     'license':'AGPL-3',
     'description': """
      Asset management is a simple system to manage assets owned by an organization.
 """,
-    'author' : 'LnkAsia',
+    'author' : 'Dhaval',
     'website' : 'http://www.broadtech-innovations.com',
     'depends': ['base','mail'],
     'images': ['static/description/banner.jpg'],
