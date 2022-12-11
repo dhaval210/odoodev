@@ -6,10 +6,8 @@ on:
 
 jobs:
  
-  Deploy_to_Pre-Production:
+  Deploy_to_Dev:
     runs-on: ubuntu-latest
-#    needs: Deploy_to_Dev
-#    if: github.event_name != 'pull_request'
     environment: development
     env:
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
