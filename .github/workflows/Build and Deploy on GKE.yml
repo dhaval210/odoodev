@@ -1,8 +1,6 @@
 name: Build and Deploy in GKE for Dev
 
 on:
-  pull:
-    branches: dev
   push:
     branches: dev
 
