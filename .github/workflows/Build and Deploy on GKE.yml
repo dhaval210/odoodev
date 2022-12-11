@@ -3,6 +3,7 @@ name: Build and Deploy in GKE in dev
 on:
   push:
     branches: dev
+  workflow_call:
 
 jobs:
  
