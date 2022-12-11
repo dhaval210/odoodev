@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Asset Management',
-    'version': '2.0',
+    'version': '3.0',
     'category': 'LnkAsia',
     'summary': 'Asset Management',
     'license':'AGPL-3',
