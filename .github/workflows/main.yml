@@ -3,7 +3,7 @@ name: Generate a build and push to another branch
 on:
   push:
     branches:
-      - dev
+      - dhaval
 
 jobs:
   build:
