@@ -1,3 +1,11 @@
 on:
   push:
     branches: dev, preprod, production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - run: |
+        git push
