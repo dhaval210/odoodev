@@ -1,10 +1,7 @@
 name: Generate a build and push to another branch
 
 on:
-  push:
-    branches:
-      - dhaval
-
+  workflow_call:
 
 jobs:
   build:
