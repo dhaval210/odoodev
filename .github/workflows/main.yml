@@ -1,7 +1,9 @@
 name: Generate a build and push to another branch
 
 on:
-  workflow_call:
+  push:
+    branches: dhaval
+  
 
 jobs:
   build:
@@ -19,6 +21,6 @@ jobs:
           FOLDER: development # The directory where your assets are generated
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           TARGET_DIR: development
-  call-workflow-in-another-repo:
+  call-workflow:
     uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@dev
   
