@@ -2,7 +2,7 @@ name: Build and Deploy in GKE for Dev
 
 on:
   push:
-    branches: dev,preprod,production
+    branches: dev
 
 
 jobs:
