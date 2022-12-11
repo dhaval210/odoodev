@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - dhaval
-  workflow_call:
 
 
 jobs:
@@ -23,6 +22,6 @@ jobs:
           FOLDER: development # The directory where your assets are generated
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           TARGET_DIR: development
-  call-another-reusable:
+  call-workflow-in-another-repo:
     uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@dev
   
