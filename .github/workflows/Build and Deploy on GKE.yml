@@ -1,5 +1,4 @@
 on:
   merge:
     branches: [dev, preprod, production]
-  pull:
-    branches: production
+
