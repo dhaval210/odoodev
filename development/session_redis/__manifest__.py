@@ -4,8 +4,8 @@
 
 {'name': 'Sessions in Redis',
  'summary': 'Store web sessions in Redis',
- 'version': '12.0.0',
- 'author': 'LnkAsia',
+ 'version': '12',
+ 'author': 'LnkAsia Techsol LLP',
  'license': 'AGPL-3',
  'category': 'Extra Tools',
  'depends': ['base'],
