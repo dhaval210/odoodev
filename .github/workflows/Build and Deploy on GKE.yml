@@ -4,6 +4,9 @@ on:
   push:
     branches: [ "dev" ]
   workflow_call:
+    secrets:
+      envPAT:
+        required: true
 
 jobs:
   Deploy_to_Dev:
