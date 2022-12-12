@@ -4,8 +4,8 @@
     'author': 'Aktiv Software',
     'category': 'sales',
     'license': 'AGPL-3',
-    'website': 'www.aktivsoftware.com',
-    'version': '12.0.1.0.0',
+    'website': 'www.lnkasia.com',
+    'version': '12.0.1.0.1',
     'summary': '''
                 Quotation Revised History
             ''',
