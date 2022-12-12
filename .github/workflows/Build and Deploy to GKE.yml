@@ -15,7 +15,7 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
-        credentials_json: '${{ env.GCP_CREDENTIALS }}'
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
     - name: Copy_developement_folder
       uses: LnkAsia/git-publish-subdir-action@develop
