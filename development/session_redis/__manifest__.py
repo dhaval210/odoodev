@@ -4,8 +4,8 @@
 
 {'name': 'Sessions in Redis',
  'summary': 'Store web sessions in Redis',
- 'version': '12.0.1.0.1',
- 'author': 'Camptocamp,Odoo Community Association (OCA)',
+ 'version': '12',
+ 'author': 'LnkAsia',
  'license': 'AGPL-3',
  'category': 'Extra Tools',
  'depends': ['base'],
