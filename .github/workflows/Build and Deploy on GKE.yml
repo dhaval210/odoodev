@@ -7,7 +7,6 @@ on:
 
 env:
      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-     GOOGLE_CREDENTIAL: ${{ secrets.GOOGLE_CREDENTIALS }}
      GAR_LOCATION: europe-west1
      GKE_CLUSTER: odoo   # TODO: update to cluster name
      GKE_ZONE: europe-west1-d   # TODO: update to cluster zone
@@ -28,7 +27,7 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v0'
       with:
-        credentials_json: GOOGLE_CREDENTIAL
+        credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
 
 
     - name: Push
@@ -37,7 +36,6 @@ jobs:
           REPO: self
           BRANCH: preprod # The branch name where you want to push the assets
           FOLDER: development # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           TARGET_DIR: development
  call-workflow:
     uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@preprod
