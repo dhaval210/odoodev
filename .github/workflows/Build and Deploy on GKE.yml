@@ -6,7 +6,7 @@ on:
   workflow_call:
 
 env:
-  PROJECT_ID: rungis-odoo-cloud
+  PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
   GAR_LOCATION: europe-west1
   GKE_CLUSTER: odoodevelopment   # TODO: update to cluster name
   GKE_ZONE: europe-west1-d   # TODO: update to cluster zone
@@ -22,18 +22,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+        
     - name: Docker configuration
       run: |-
         gcloud --quiet auth configure-docker
-        
-    # Get the GKE credentials so we can deploy to the cluster
-    - name: Set up GKE credentials
-      uses: google-github-actions/get-gke-credentials@v0
+
+    - id: 'get-credentials'
+      uses: 'google-github-actions/get-gke-credentials@v1'
       with:
-        project_id: rungis-odoo-cloud
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
-              
+             
    
   Restart_the_service:
     runs-on: ubuntu-latest
