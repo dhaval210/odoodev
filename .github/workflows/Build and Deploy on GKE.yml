@@ -36,6 +36,7 @@ jobs:
    
   Restart_the_service:
     runs-on: ubuntu-latest
+    need: Deploy_to_Dev
     environment: development
     
     steps:
