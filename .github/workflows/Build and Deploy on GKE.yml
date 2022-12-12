@@ -47,14 +47,6 @@ jobs:
       run: |-
         gcloud --quiet auth configure-docker
         
-    # Get the GKE credentials so we can deploy to the cluster
-    - id: 'get-credentials'
-      uses: 'google-github-actions/get-gke-credentials@v1'
-      with:
-        project_id: rungis-odoo-cloud
-        cluster_name: ${{ env.GKE_CLUSTER }}
-        location: ${{ env.GKE_ZONE }}
-
     - name: Sleep for 60 seconds
       uses: LnkAsia/wait-action@master
       with:
