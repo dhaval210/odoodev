@@ -6,7 +6,7 @@ on:
   workflow_call:
 
 env:
-  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  PROJECT_ID: rungis-odoo-cloud
   GAR_LOCATION: europe-west1
   GKE_CLUSTER: odoodevelopment   # TODO: update to cluster name
   GKE_ZONE: europe-west1-d   # TODO: update to cluster zone
