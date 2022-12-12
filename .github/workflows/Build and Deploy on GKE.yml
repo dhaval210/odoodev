@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "dev" ]
   workflow_call:
+    secrets: inherit
 
 env:
   PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
