@@ -1,0 +1,42 @@
+name: Build and Deploy to GKE
+
+on:
+  push:
+    branches: [ "dhaval" ]
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GAR_LOCATION: us-central1 # TODO: update region of the Artifact Registry
+  GKE_CLUSTER: cluster-1    # TODO: update to cluster name
+  GKE_ZONE: us-central1-c   # TODO: update to cluster zone
+  DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
+  REPOSITORY: samples # TODO: update to Artifact Registry docker repository
+  IMAGE: static-site
+
+jobs:
+  Copy_developement_folder:
+
+    runs-on: ubuntu-latest
+    environment: dhaval
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+
+    # Alternative option - authentication via credentials json
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    - name: Push
+      uses: s0/git-publish-subdir-action@develop
+      env:
+          REPO: self
+          BRANCH: dev # The branch name where you want to push the assets
+          FOLDER: development # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          TARGET_DIR: development
+  call-workflow:
+    uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@dev
