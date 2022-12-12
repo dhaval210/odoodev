@@ -5,7 +5,7 @@
     'category': 'sales',
     'license': 'AGPL-3',
     'website': 'www.lnkasia.com',
-    'version': '12.0.2.0.6',
+    'version': '12.0.2.0.5',
     'summary': '''
                 Quotation Revised History
             ''',
