@@ -4,7 +4,6 @@ on:
   push:
     branches: [ "dev" ]
   workflow_call:
-    secrets: inherit
 
 jobs:
   Deploy_to_Dev:
