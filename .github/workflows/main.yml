@@ -7,9 +7,17 @@ on:
 jobs:
  Copy_developement_folder:
     runs-on: ubuntu-latest
+    environment: dhaval
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      
+    # Alternative option of authentication via credentials json
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
     - name: Push
       uses: s0/git-publish-subdir-action@develop
