@@ -41,8 +41,7 @@ jobs:
   Restart_the_service:
     runs-on: ubuntu-latest
     needs: Deploy_to_Dev
-    environment: development
-    
+        
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -55,7 +54,13 @@ jobs:
       uses: LnkAsia/wait-action@master
       with:
         time: '60s'
+        
+  Copy_Folder_in_Preprod:
+    runs-on: ubuntu-latest
+    needs: Restart_the_service
+    environment: development
 
+    steps:
     - name: Push
       uses: LnkAsia/git-publish-subdir-action@develop
       env:
