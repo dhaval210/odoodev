@@ -21,8 +21,8 @@
 ##############################################################################
 {
     'name': 'Asset Management',
-    'version': '1.0',
-    'category': 'Dhaval',
+    'version': '10',
+    'category': 'custom',
     'summary': 'Asset Management',
     'license':'AGPL-3',
     'description': """
