@@ -5,7 +5,7 @@ on:
     branches: [ "developer" ]
 
 jobs:
-  A_Copy_folders_in_Development:
+  Copy_folders_in_Development:
     runs-on: ubuntu-latest
     environment: developer
     steps:
