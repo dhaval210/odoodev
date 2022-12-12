@@ -11,13 +11,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    # Alternative option of authentication via credentials json
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
-      with:
-       credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-
-
     - name: Push
       uses: s0/git-publish-subdir-action@develop
       env:
