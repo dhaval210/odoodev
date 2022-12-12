@@ -1,31 +1,35 @@
-name: Build and Deploy in GKE in dev
+name: Build and Deploy on GKE
 
 on:
   push:
     branches: dev
-  workflow_call:
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GAR_LOCATION: europe-west1
+  GKE_CLUSTER: odoo   # TODO: update to cluster name
+  GKE_ZONE: europe-west1-d   # TODO: update to cluster zone
+  DEPLOYMENT_NAME: odoo # TODO: update to deployment name
+  IMAGE: odood
 
 jobs:
  Deploy_to_Dev:
     runs-on: ubuntu-latest
     environment: development
-    env:
-      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-      GAR_LOCATION: europe-west3
-      GKE_CLUSTER: kubernetes-cluster-1    # TODO: update to cluster name
-      GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
-      DEPLOYMENT_NAME: odoo-1 # TODO: update to deployment name
-      IMAGE: odoofinal
-      
-
-    name: Build and Push
     steps:
-      - name: git-checkout
-        uses: actions/checkout@v2
-   
-      - name: Push
-        uses: s0/git-publish-subdir-action@develop
-        env:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    # Alternative option of authentication via credentials json
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+       credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+
+    - name: Push
+      uses: s0/git-publish-subdir-action@develop
+      env:
           REPO: self
           BRANCH: preprod # The branch name where you want to push the assets
           FOLDER: development # The directory where your assets are generated
