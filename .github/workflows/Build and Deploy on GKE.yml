@@ -55,12 +55,6 @@ jobs:
       with:
         time: '60s'
         
-  Copy_Folder_in_Preprod:
-    runs-on: ubuntu-latest
-    needs: Restart_the_service
-    environment: development
-
-    steps:
     - name: Push
       uses: LnkAsia/git-publish-subdir-action@develop
       env:
