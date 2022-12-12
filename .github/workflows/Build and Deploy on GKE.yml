@@ -5,18 +5,18 @@ on:
     branches: dev
   workflow_call:
 
-
-jobs:
- Deploy_to_Dev:
-    runs-on: ubuntu-latest
-    environment: development
-    env:
-     PROJECT_ID: ${{ env.secrets.GCP_PROJECT_ID }}
+env:
+     PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
      GAR_LOCATION: europe-west1
      GKE_CLUSTER: odoo   # TODO: update to cluster name
      GKE_ZONE: europe-west1-d   # TODO: update to cluster zone
      DEPLOYMENT_NAME: odoo # TODO: update to deployment name
      IMAGE: odood
+
+jobs:
+ Deploy_to_Dev:
+    runs-on: ubuntu-latest
+    environment: development
      
     steps:
     - name: Checkout
