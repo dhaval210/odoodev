@@ -51,7 +51,7 @@ jobs:
         gcloud --quiet auth configure-docker
         
     - name: Sleep for 60 seconds
-      uses: LnkAsia/wait-action@master
+      uses: dhaval210/wait-action@master
       with:
         time: '60s'
         
