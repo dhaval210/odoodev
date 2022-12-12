@@ -1,26 +1,63 @@
-name: Build and Deploy on GKE on dev
+name: Build and Deploy on GKE
 
 on:
   push:
-    branches: dev
+    branches: [ "dev" ]
   workflow_call:
 
 env:
-     PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-     GAR_LOCATION: europe-west1
-     GKE_CLUSTER: odoo   # TODO: update to cluster name
-     GKE_ZONE: europe-west1-d   # TODO: update to cluster zone
-     DEPLOYMENT_NAME: odoo # TODO: update to deployment name
-     IMAGE: odood
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GAR_LOCATION: europe-west1
+  GKE_CLUSTER: odoodevelopment   # TODO: update to cluster name
+  GKE_ZONE: europe-west1-d   # TODO: update to cluster zone
+  DEPLOYMENT_NAME: odoodevelopment # TODO: update to deployment name
+  IMAGE: odoodevelopment
 
 jobs:
  Deploy_to_Dev:
     runs-on: ubuntu-latest
     environment: development
-     
+
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+
+    - name: Docker configuration
+      run: |-
+        gcloud --quiet auth configure-docker
+        
+    # Get the GKE credentials so we can deploy to the cluster
+    - name: Set up GKE credentials
+      uses: google-github-actions/get-gke-credentials@v0
+      with:
+        cluster_name: ${{ env.GKE_CLUSTER }}
+        location: ${{ env.GKE_ZONE }}
+              
+   
+  Restart_the_service:
+    runs-on: ubuntu-latest
+    needs: setup-build-publish-deploy
+    environment: Restart_the_service
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Docker configuration
+      run: |-
+        gcloud --quiet auth configure-docker
+        
+    # Get the GKE credentials so we can deploy to the cluster
+    - name: Set up GKE credentials
+      uses: google-github-actions/get-gke-credentials@v0
+      with:
+        cluster_name: ${{ env.GKE_CLUSTER }}
+        location: ${{ env.GKE_ZONE }}
+
+    - name: Sleep for 60 seconds
+      uses: LnkAsia/wait-action@master
+      with:
+        time: '60s'
 
     - name: Push
       uses: LnkAsia/git-publish-subdir-action@develop
@@ -32,5 +69,3 @@ jobs:
           TARGET_DIR: development
  call-workflow:
     uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@preprod
-
-
