@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Asset Management',
-    'version': '10',
+    'version': '1.0',
     'category': 'custom',
     'summary': 'Asset Management',
     'license':'AGPL-3',
