@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     env:
-     PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+     PROJECT_ID: ${{ env.secrets.GCP_PROJECT_ID }}
      GAR_LOCATION: europe-west1
      GKE_CLUSTER: odoo   # TODO: update to cluster name
      GKE_ZONE: europe-west1-d   # TODO: update to cluster zone
@@ -26,7 +26,7 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
-       credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+       credentials_json: '${{ env.secrets.GCP_CREDENTIALS }}'
 
 
     - name: Push
