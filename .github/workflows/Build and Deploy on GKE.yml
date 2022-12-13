@@ -50,15 +50,16 @@ jobs:
       run: |-
         gcloud --quiet auth configure-docker
         
-    - name: Sleep for 60 seconds
+    - name: Sleep for 10 seconds
       uses: dhaval210/wait-action@master
       with:
-        time: '60s'
+        time: '10s'
 
   Copy_Folders_in_Preprod:
 
     runs-on: ubuntu-latest
     needs: Restart_the_service
+    environment: copy_folder_to_next_branch
     env:
       GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
       PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
