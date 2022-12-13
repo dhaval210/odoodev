@@ -28,7 +28,7 @@
     'description': """
      Asset management is a simple system to manage assets owned by an organization.
 """,
-    'author' : 'LNKasia',
+    'author' : 'LNKasia techsol',
     'website' : 'http://www.broadtech-innovations.com',
     'depends': ['base','mail'],
     'images': ['static/description/banner.jpg'],
