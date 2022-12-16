@@ -27,15 +27,21 @@ jobs:
       with:
         credentials_json: '${{ env.GCP_CREDENTIALS }}'
         
-    - name: Docker configuration
-      run: |-
-        gcloud --quiet auth configure-docker
+#    - name: Docker configuration
+#      run: |-
+#        gcloud --quiet auth configure-docker
 
     - id: 'get-credentials'
       uses: 'google-github-actions/get-gke-credentials@v1'
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
+
+    - name: copy
+      run: |-
+        kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'rm -rf /mnt/transfer/*'
+        kubectl cp ${{ github.workspace }}/development deploy/odoodevelopment:/mnt/transfer
+        kubectl exec deploy/odoodevelopment -- /bin/bash -- ./scripts/copy.sh
              
    
   Restart_the_service:
@@ -50,10 +56,10 @@ jobs:
       run: |-
         gcloud --quiet auth configure-docker
         
-    - name: Sleep for 10 seconds
-      uses: dhaval210/wait-action@master
-      with:
-        time: '10s'
+#    - name: Sleep for 10 seconds
+#      uses: dhaval210/wait-action@master
+#      with:
+#        time: '10s'
 
   Copy_Folders_in_Preprod:
 
