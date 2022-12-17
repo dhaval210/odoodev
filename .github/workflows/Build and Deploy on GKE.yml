@@ -40,7 +40,7 @@ jobs:
     - name: delete and move folder
       run: |-
          kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'rm -rf /mnt/filestore/rungisapps/*'
-         kubectl cp ${{github.workspace}}/development/* /mnt/filestore/rungisapps/* -c odoodevelopment-sha256-1
+         kubectl cp ${{github.workspace}}/development/ deploy/odoodevelopment:/mnt/filestore/rungisapps/ -c odoodevelopment-sha256-1
 #         kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'cp  ${{github.workspace}}/development/* /mnt/filestore/rungisapps/'
 #         kubectl cp ${{github.workspace}}/development/* deploy/odoodevelopment:/mnt/transfer/
     
