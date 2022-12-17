@@ -37,13 +37,13 @@ jobs:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
 
-    - name: copy
+    - name: delete and move folder
       run: |-
-         kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'rm -rf /mnt/transfer/*'
-#        kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'cp -r ${{github.workspace}}/development/ /mnt/transfer/'
+         kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'rm -rf /mnt/filestore/rungisapps/*'
+         kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'cp -r ${{github.workspace}}/development/ /mnt/filestore/rungisapps/'
 #        kubectl cp ${{github.workspace}}/development/ deploy/odoodevelopment:/mnt/transfer/
-         kubectl exec deploy/odoodevelopment -- /bin/bash -- ./scripts/copy.sh
-             
+    
+           
    
   Restart_the_service:
     runs-on: ubuntu-latest
