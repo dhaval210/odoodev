@@ -39,8 +39,8 @@ jobs:
 
     - name: copy
       run: |-
-        kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'rm -rf /mnt/transfer/*'
-        kubectl cp ${{ github.workspace }}/development deploy/odoodevelopment:/mnt/transfer
+#        kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'rm -rf /mnt/transfer/*'
+        kubectl cp ${{github.workspace}}/development/ deploy/odoodevelopment:/mnt/filestore/rungisapps/
         kubectl exec deploy/odoodevelopment -- /bin/bash -- ./scripts/copy.sh
              
    
