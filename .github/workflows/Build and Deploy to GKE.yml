@@ -2,7 +2,8 @@ name: Build and Deploy to GKE - developer
 
 on:
   push:
-    branches: [ "developer" ]
+    branches:    
+      - '**'  
 
 jobs:
   Copy_folders_in_Development:
