@@ -6,7 +6,7 @@ on:
       - developer 
 
 jobs:
-  pull-request:
+  copy_code_in_dev:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
