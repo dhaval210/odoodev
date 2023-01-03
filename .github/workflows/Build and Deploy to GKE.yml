@@ -13,6 +13,7 @@ jobs:
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
+        source_branch: "developer" 
         destination_branch: "dev"
 
     - id: 'auth'
