@@ -7,8 +7,9 @@ on:
   workflow_call:
 
 jobs:
-  pull-request:
+  copy_code_in_preprod:
     runs-on: ubuntu-latest
+    environment: development
     steps:
     - uses: actions/checkout@v3
     - name: pull-request
