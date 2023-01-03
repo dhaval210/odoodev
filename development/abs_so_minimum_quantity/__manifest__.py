@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-9 -*-
 #################################################################################
 #
 #    Odoo, Open Source Management Solution
-#    Copyright (C) 2019-today Ascetic Business Solution <www.asceticbs.com>
+#    Copyright (C) 2023-today Ascetic Business Solution <www.asceticbs.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
