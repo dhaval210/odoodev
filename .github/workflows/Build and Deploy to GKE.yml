@@ -13,7 +13,6 @@ jobs:
     - name: Copy code in dev
       uses: repo-sync/pull-request@v2
       with:
-        source_branch: "developer" 
         destination_branch: "dev"
 
     - id: 'auth'
