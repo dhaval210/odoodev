@@ -15,7 +15,6 @@ jobs:
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
-        source_branch: "devloper" 
         destination_branch: "preprod"
 
     - id: 'auth'
