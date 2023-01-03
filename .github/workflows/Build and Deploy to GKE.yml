@@ -6,23 +6,19 @@ on:
       - developer 
 
 jobs:
-  create-pull-request:
+  pull-request:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: pull-request
-        uses: repo-sync/pull-request@v2
-        with:
-          destination_branch: "dev"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_label: "feature, automated pr"
-          pr_title: "[Example] Simple demo"
+    - uses: actions/checkout@v3
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "dev"
 
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
 
 #  call-workflow:
