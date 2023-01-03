@@ -3,7 +3,7 @@ name: Build and Deploy to GKE - developer
 on:
   push:
     branches:    
-      - '**'  
+      - developer 
 
 jobs:
   pull-request:
