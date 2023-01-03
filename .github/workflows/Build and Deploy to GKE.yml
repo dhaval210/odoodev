@@ -27,6 +27,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           TARGET_DIR: development
 
-  call-workflow:
-    uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@dev
-    secrets: inherit
+#  call-workflow:
+#    uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@dev
+#    secrets: inherit
