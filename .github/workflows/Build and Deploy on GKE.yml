@@ -1,60 +1,27 @@
-name: Build and Deploy on GKE - Dev
+name: Build and Deploy to GKE - dev
 
 on:
   push:
-    branches: [ "dev" ]
-  workflow_call:
+    branches:    
+      - dev
 
 jobs:
-  Deploy_to_Dev:
+  pull-request:
     runs-on: ubuntu-latest
-    environment: development
-
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      
-    - name: Copy Code in Dev
-      id: cpr
-      uses: peter-evans/create-pull-request@v4
-    - name: Check outputs
-      if: ${{ steps.cpr.outputs.pull-request-number }}
-      run: |
-         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+    - uses: actions/checkout@v3
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: "dev" 
+        destination_branch: "preprod"
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
-        credentials_json: '${{ env.GCP_CREDENTIALS }}'
-        
-#    - name: Docker configuration
-#      run: |-
-#        gcloud --quiet auth configure-docker
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-    - id: 'get-credentials'
-      uses: 'google-github-actions/get-gke-credentials@v1'
-      with:
-        cluster_name: ${{ env.GKE_CLUSTER }}
-        location: ${{ env.GKE_ZONE }}
 
-        
-   
-  Restart_the_service:
-    runs-on: ubuntu-latest
-    needs: Deploy_to_Dev
-        
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Docker configuration
-      run: |-
-        gcloud --quiet auth configure-docker
-        
-#    - name: Sleep for 10 seconds
-#      uses: dhaval210/wait-action@master
-#      with:
-#        time: '10s'
-
+#  call-workflow:
+#    uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@dev
+#    secrets: inherit
