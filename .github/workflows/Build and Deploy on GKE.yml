@@ -14,7 +14,7 @@ jobs:
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
-        source_branch: "dev" 
+        source_branch: "devloper" 
         destination_branch: "preprod"
 
     - id: 'auth'
@@ -23,6 +23,3 @@ jobs:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
 
-  call-workflow:
-    uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@preprod
-    secrets: inherit
