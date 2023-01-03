@@ -9,18 +9,14 @@ jobs:
   Deploy_to_Dev:
     runs-on: ubuntu-latest
     environment: development
-    env:
-      GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-      PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
-      GAR_LOCATION: europe-west1
-      GKE_CLUSTER: odoodevelopment   # TODO: update to cluster name
-      GKE_ZONE: europe-west1-d   # TODO: update to cluster zone
-      DEPLOYMENT_NAME: odoodevelopment # TODO: update to deployment name
-      IMAGE: odoodevelopment
+
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
@@ -37,17 +33,7 @@ jobs:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
 
-    - name: delete and move folder
-      run: |-
-         kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'rm -rf /mnt/filestore/rungisapps/*'
-         for pod in `kubectl get pods -o=name | sed "s/^.\{4\}//"`
-         do
-         kubectl cp ${{github.workspace}}/rungisapps/  $pod:/mnt/filestore/
-         done
-#         kubectl exec deploy/odoodevelopment -- /bin/bash  -c 'cp  ${{github.workspace}}/development/* /mnt/filestore/rungisapps/'
-#         kubectl cp ${{github.workspace}}/development/* deploy/odoodevelopment:/mnt/transfer/
-    
-           
+        
    
   Restart_the_service:
     runs-on: ubuntu-latest
@@ -66,32 +52,3 @@ jobs:
 #      with:
 #        time: '10s'
 
-  Copy_Folders_in_Preprod:
-
-    runs-on: ubuntu-latest
-    needs: Restart_the_service
-    environment: copy_folder_to_next_branch
-    env:
-      GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-      PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
-    
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
-      with:
-        credentials_json: '${{ env.GCP_CREDENTIALS }}'
-
-    - name: Push
-      uses: LnkAsia/git-publish-subdir-action@develop
-      env:
-          REPO: self
-          BRANCH: preprod # The branch name where you want to push the assets
-          FOLDER: development # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-          TARGET_DIR: development
-  call-workflow:
-    uses: dhaval210/odoodev/.github/workflows/Build and Deploy on GKE.yml@preprod
-    secrets: inherit
