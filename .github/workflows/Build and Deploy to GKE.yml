@@ -6,14 +6,18 @@ on:
       - developer 
 
 jobs:
-  copy_code_in_dev:
+  create-pull-request:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Copy code in dev
-      uses: repo-sync/pull-request@v2
-      with:
-        destination_branch: "dev"
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "dev"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "feature, automated pr"
+          pr_title: "[Example] Simple demo"
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
