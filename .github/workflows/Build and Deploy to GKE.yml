@@ -14,15 +14,15 @@ jobs:
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:
-          destination_branch: "dev"
+          destination_branch: "develop"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "feature, automated pr"
           pr_title: "[Example] Simple demo"
 
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
-      with:
-        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
 
 #  call-workflow:
