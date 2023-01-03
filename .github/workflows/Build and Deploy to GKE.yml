@@ -6,19 +6,14 @@ on:
       - '**'  
 
 jobs:
-  Copy_folders_in_Development:
+  pull-request:
     runs-on: ubuntu-latest
-    environment: developer
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
-         destination_branch: "dev"
-         github_token: ${{ secrets.GITHUB_TOKEN }}
-         pr_label: "feature, automated pr"
-         pr_title: "[Example] Simple demo"
+        destination_branch: "dev"
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
