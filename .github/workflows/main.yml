@@ -17,5 +17,5 @@ jobs:
       with:
         time: '10s'
   call-workflow:
-    uses: dhaval210/odoodev/.github/workflows/main.yml@preprod
+    uses: dhaval210/odoodev/.github/workflows/main.yml@pp
     secrets: inherit
