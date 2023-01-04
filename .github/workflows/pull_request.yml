@@ -36,7 +36,3 @@ jobs:
       with:
         destination_branch: "prod"
         pr_title: "Pulling ${{ github.ref }} into prod"
-
-  call-workflow:
-    uses: dhaval210/Rungis/.github/workflows/blank.yml@dev
-    secrets: inherit
